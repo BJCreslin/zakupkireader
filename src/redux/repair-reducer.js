@@ -4,14 +4,16 @@ const SET_REPAIRS = "SET_REPAIRS";
 const SET_FETCHING = "SET_FETCHING";
 
 const initialState = {
-    isFetching: false
+    isFetching: false,
+    repairs: []
 }
 
 let repairReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_REPAIRS: {
             return {
-                ...state
+                ...state,
+                repairs: action.repairs
             }
         }
         case SET_FETCHING: {
@@ -32,7 +34,7 @@ export const setRepairs = (repairs) => ({type: SET_REPAIRS, repairs});
 export const setToggleFetching = (isFetching) => ({type: SET_FETCHING, isFetching: isFetching});
 
 
-export const getRepairsFromZakupkiThunkCreator = (task) => {
+export const getRepairsFromZakupkiThunkCreator = () => {
     return (dispatch) => {
         dispatch(setToggleFetching(true));
         ZakupkiRepairAPI.getAllNew().then(data => {
