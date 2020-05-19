@@ -12,14 +12,16 @@ class RepairsContainer extends React.Component {
         this.props.getRepairsFromZakupkiThunkCreator();
     }
 
-    render() {
-        {
+    render = () => {
+        return (
+
             this.props.repairs.map(repair => {
                 return (
                     <Repair repair={repair}/>
                 )
             })
-        }
+        )
+
     }
 }
 
