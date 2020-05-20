@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from "react-bootstrap";
 
 
 class Repair extends React.Component {
@@ -20,7 +21,9 @@ class Repair extends React.Component {
     <span> {this.props.repair.placementStages} </span>
     <span> {this.props.repair.link} </span>
     <span> {this.props.repair.uin} </span>
-
+    <Button variant="success">Necessary</Button>
+    <Button variant="danger">Needless</Button>
+    <Button variant="secondary">Secondary</Button>
 
 
 
