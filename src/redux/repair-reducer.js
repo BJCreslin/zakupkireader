@@ -2,6 +2,7 @@ import {ZakupkiRepairAPI} from "../api/api";
 
 const SET_REPAIRS = "SET_REPAIRS";
 const SET_FETCHING = "SET_FETCHING";
+const DELETE_REPAIR_BY_UIN = "DELETE_REPAIR_BY_UIN";
 
 const initialState = {
     isFetching: false,
@@ -22,6 +23,18 @@ let repairReducer = (state = initialState, action) => {
                 isFetching: action.isFetching
             }
         }
+        case DELETE_REPAIR_BY_UIN: {
+            let newRepairs = state.repairs.filter(function (repair) {
+                return repair.uin !== action.procedure.uin
+            });
+
+            return {
+                ...state,
+                repairs: newRepairs
+            }
+        }
+
+
         default: {
             return state;
         }
@@ -31,6 +44,8 @@ let repairReducer = (state = initialState, action) => {
 export default repairReducer;
 
 export const setRepairs = (repairs) => ({type: SET_REPAIRS, repairs});
+export const deleteRepairs = (procedure) => ({type: DELETE_REPAIR_BY_UIN, procedure});
+
 export const setToggleFetching = (isFetching) => ({type: SET_FETCHING, isFetching: isFetching});
 
 
@@ -43,3 +58,14 @@ export const getRepairsFromZakupkiThunkCreator = () => {
         });
     }
 };
+export const saveRepairsToZakupkiThunkCreator = (procedure) => {
+    return (dispatch) => {
+        dispatch(setToggleFetching(true));
+        ZakupkiRepairAPI.saveProcedure(procedure).then(data => {
+            dispatch(deleteRepairs(data));
+            dispatch(setToggleFetching(false));
+        });
+    }
+};
+
+
