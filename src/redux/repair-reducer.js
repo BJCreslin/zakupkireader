@@ -24,9 +24,11 @@ let repairReducer = (state = initialState, action) => {
             }
         }
         case DELETE_REPAIR_BY_UIN: {
-            let newRepairs = state.repairs.filter(function (repair) {
+            let newRepairs = state.repairs.filter( (repair)=> {
                 return repair.uin !== action.procedure.uin
             });
+
+           // let newRepairs =state.repairs.splice(state.repairs.findIndex(item => item.uin === action.procedure.uin), 1)
 
             return {
                 ...state,
@@ -62,7 +64,7 @@ export const saveRepairsToZakupkiThunkCreator = (procedure) => {
     return (dispatch) => {
         dispatch(setToggleFetching(true));
         ZakupkiRepairAPI.saveProcedure(procedure).then(data => {
-            dispatch(deleteRepairs(data));
+            dispatch(deleteRepairs(procedure));
             dispatch(setToggleFetching(false));
         });
     }
