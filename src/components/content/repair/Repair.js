@@ -11,6 +11,14 @@ class Repair extends React.Component {
         })
     }
 
+    needlesHandler = (e) => {
+        this.props.saveRepairsToZakupkiThunkCreator({
+            id: this.props.repair.id,
+            needed: false,
+            uin: this.props.repair.uin
+        })
+    }
+
 
     render() {
         return (
@@ -29,7 +37,7 @@ class Repair extends React.Component {
                     <span> {this.props.repair.link} </span>
                     <span> {this.props.repair.uin} </span>
                     <Button variant="success" onClick={this.successHandler}>Necessary</Button>
-                    <Button variant="danger">Needless</Button>
+                    <Button variant="danger" onClick={this.needlesHandler}>Needless</Button>
                     <Button variant="secondary">Secondary</Button>
 
 
