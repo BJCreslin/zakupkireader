@@ -9,11 +9,11 @@ import {AppStateType} from "../../../redux/redux-store";
 type PropsType = {
     repairs: Array<RepairType>
     saveRepairsToZakupkiThunkCreator: (procedure: ProcedureType) => void
+    getRepairsFromZakupkiThunkCreator: () => void
 }
 
 class RepairsContainer extends React.Component <PropsType> {
     componentDidMount() {
-        // @ts-ignore
         this.props.getRepairsFromZakupkiThunkCreator();
     }
 
@@ -44,8 +44,6 @@ const mapDispatchToProps = {
     saveRepairsToZakupkiThunkCreator
 }
 
-export default compose
-(
-    connect(mapStateToProps, mapDispatchToProps)
-)
+// @ts-ignore
+export default compose(connect(mapStateToProps, mapDispatchToProps))
 (RepairsContainer);
