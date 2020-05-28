@@ -65,7 +65,6 @@ let repairReducer = (state = initialState, action: ActionsType): InitialStateTyp
 
         }
 
-
         default: {
             return state;
         }
@@ -74,7 +73,12 @@ let repairReducer = (state = initialState, action: ActionsType): InitialStateTyp
 }
 export default repairReducer;
 
-export const setRepairs = (repairs: RepairType[]) => ({type: SET_REPAIRS, repairs});
+type SetRepairsType = {
+    type: typeof SET_REPAIRS,
+    repairs: RepairType[]
+}
+
+export const setRepairs = (repairs: RepairType[]): SetRepairsType => ({type: SET_REPAIRS, repairs});
 export const deleteRepairs = (procedure: ProcedureType) => ({type: DELETE_REPAIR_BY_UIN, procedure});
 
 export const setToggleFetching = (isFetching: boolean) => ({type: SET_FETCHING, isFetching: isFetching});
@@ -98,5 +102,3 @@ export const saveRepairsToZakupkiThunkCreator = (procedure: ProcedureType) => {
         });
     }
 };
-
-
