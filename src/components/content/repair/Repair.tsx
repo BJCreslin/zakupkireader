@@ -10,7 +10,7 @@ type PropsType = {
 
 class Repair extends React.Component<PropsType> {
     successHandler = (e: any) => {
-        // @ts-ignore
+
         this.props.saveRepairsToZakupkiThunkCreator({
             id: this.props.repair.id,
             needed: true,
