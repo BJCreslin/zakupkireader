@@ -48,7 +48,7 @@ let repairReducer = (state = initialState, action: ActionsType): InitialStateTyp
                 if (state.repairs) {
                     newRepairs = state.repairs.filter((repair) => {
                         // @ts-ignore
-                        return repair.uin = action.procedure.uin();
+                        return repair.uin = action.procedure.uin;
                     });
                 }
 
