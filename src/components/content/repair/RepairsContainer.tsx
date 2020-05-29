@@ -44,6 +44,5 @@ const mapDispatchToProps = {
     saveRepairsToZakupkiThunkCreator
 }
 
-// @ts-ignore
 export default compose(connect(mapStateToProps, mapDispatchToProps))
 (RepairsContainer);

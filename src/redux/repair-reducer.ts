@@ -1,28 +1,28 @@
 import {ZakupkiRepairAPI} from "../api/api";
 import {ProcedureType, RepairType} from "../types/datatypes";
+import {Dispatch} from "redux";
+import {AppStateType} from "./redux-store";
+import {ThunkAction} from "redux-thunk";
 
 const SET_REPAIRS = "SET_REPAIRS";
 const SET_FETCHING = "SET_FETCHING";
 const DELETE_REPAIR_BY_UIN = "DELETE_REPAIR_BY_UIN";
 
 type InitialStateType = {
-    isFetching: boolean,
+    isFetching: IsFetchingType,
     repairs: undefined | null | RepairType[]
 }
 
-type ActionsType = {
-    type: string,
-    repairs?: RepairType[],
-    isFetching?: boolean,
-    procedure?: ProcedureType
-}
+type IsFetchingType = boolean;
+
+type ActionsTypes = SetRepairsType | DeleteRepairsType | SetToggleFetchingType
 
 const initialState: InitialStateType = {
     isFetching: false,
     repairs: []
 }
 
-let repairReducer = (state = initialState, action: ActionsType): InitialStateType => {
+let repairReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case SET_REPAIRS: {
             return {
@@ -78,14 +78,30 @@ type SetRepairsType = {
     repairs: RepairType[]
 }
 
+type DeleteRepairsType = {
+    type: typeof DELETE_REPAIR_BY_UIN,
+    procedure: ProcedureType
+}
+
+type SetToggleFetchingType = {
+    type: typeof SET_FETCHING,
+    isFetching: IsFetchingType
+}
+
 export const setRepairs = (repairs: RepairType[]): SetRepairsType => ({type: SET_REPAIRS, repairs});
-export const deleteRepairs = (procedure: ProcedureType) => ({type: DELETE_REPAIR_BY_UIN, procedure});
+export const deleteRepairs = (procedure: ProcedureType): DeleteRepairsType => ({type: DELETE_REPAIR_BY_UIN, procedure});
 
-export const setToggleFetching = (isFetching: boolean) => ({type: SET_FETCHING, isFetching: isFetching});
+export const setToggleFetching = (isFetching: boolean): SetToggleFetchingType => ({
+    type: SET_FETCHING,
+    isFetching: isFetching
+});
 
 
-export const getRepairsFromZakupkiThunkCreator = () => {
-    return (dispatch: any) => {
+type GetStateType = () => AppStateType;
+type DispatchType = Dispatch<ActionsTypes>
+
+export const getRepairsFromZakupkiThunkCreator = (): ThunkAction<Promise<void>, AppStateType, any, ActionsTypes> => {
+    return async (dispatch, getState ) => {
         dispatch(setToggleFetching(true));
         ZakupkiRepairAPI.getAllNew().then(function (data: any) {
             dispatch(setRepairs(data));
@@ -93,8 +109,8 @@ export const getRepairsFromZakupkiThunkCreator = () => {
         });
     }
 };
-export const saveRepairsToZakupkiThunkCreator = (procedure: ProcedureType) => {
-    return (dispatch: any) => {
+export const saveRepairsToZakupkiThunkCreator = (procedure: ProcedureType): ThunkAction<Promise<void>, AppStateType, any, ActionsTypes> => {
+    return async (dispatch, getState) => {
         dispatch(setToggleFetching(true));
         ZakupkiRepairAPI.saveProcedure(procedure).then(function (data: any) {
             dispatch(deleteRepairs(procedure));
