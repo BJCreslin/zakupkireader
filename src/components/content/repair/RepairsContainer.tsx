@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {getRepairsFromZakupkiThunkCreator, saveRepairsToZakupkiThunkCreator} from "../../../redux/repair-reducer";
@@ -13,7 +13,9 @@ type PropsType = {
 }
 
 class RepairsContainer extends React.Component <PropsType> {
+    props: any;
     componentDidMount() {
+        this.props.getRepairsFromZakupkiThunkCreator()
         this.props.getRepairsFromZakupkiThunkCreator();
     }
 
@@ -23,8 +25,7 @@ class RepairsContainer extends React.Component <PropsType> {
                     return (
                         <Repair
                             repair={repair}
-                            saveRepairsToZakupkiThunkCreator={this.props.saveRepairsToZakupkiThunkCreator}
-                        />
+                            saveRepairsToZakupkiThunkCreator={this.props.saveRepairsToZakupkiThunkCreator}></Repair>
                     )
                 }
             )
@@ -32,12 +33,16 @@ class RepairsContainer extends React.Component <PropsType> {
     }
 }
 
+type MapStateToPropsType={
+    repairs:RepairType[]|null|undefined
+}
 
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType):MapStateToPropsType => {
     return {
         repairs: state.repairContent.repairs
     }
 }
+
 
 const mapDispatchToProps = {
     getRepairsFromZakupkiThunkCreator,
