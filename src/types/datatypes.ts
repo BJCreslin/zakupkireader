@@ -19,3 +19,5 @@ export type ProcedureType = {
     needed: boolean,
     uin: string
 }
+
+export type RepairsType= Array<RepairType>|null | undefined
