@@ -52,8 +52,6 @@ let repairReducer = (state = initialState, action: ActionsTypes): InitialStateTy
                     });
                 }
 
-                // let newRepairs =state.repairs.splice(state.repairs.findIndex(item => item.uin === action.procedure.uin), 1)
-
                 return {
                     ...state,
                     repairs: newRepairs
@@ -108,6 +106,7 @@ export const getRepairsFromZakupkiThunkCreator = (): ThunkAction<Promise<void>, 
         });
     }
 };
+
 export const saveRepairsToZakupkiThunkCreator = (procedure: ProcedureType): ThunkAction<Promise<void>, AppStateType, any, ActionsTypes> => {
     return async (dispatch, getState) => {
         dispatch(setToggleFetching(true));

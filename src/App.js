@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/heaader/Header";
-import RepairsContainer from "./components/content/repair/RepairsContainer";
+import Content from "./components/content/Content";
 
 function App() {
     return (
         <div>
             <Header/>
-            <RepairsContainer/>
+            <Content/>
         </div>
     );
 }

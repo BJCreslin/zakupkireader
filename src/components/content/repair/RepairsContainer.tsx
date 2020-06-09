@@ -24,9 +24,8 @@ class RepairsContainer extends React.Component <PropsType> {
         return (
             this.props.repairs.map((repair: RepairType) => {
                     return (
-                        <Repair
-                            repair={repair}
-                            saveRepairsToZakupkiThunkCreator={this.props.saveRepairsToZakupkiThunkCreator}></Repair>
+                        <Repair repair={repair}
+                            saveRepairsToZakupkiThunkCreator={this.props.saveRepairsToZakupkiThunkCreator}/>
                     )
                 }
             )
@@ -43,7 +42,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         repairs: state.repairContent.repairs
     }
 }
-
 
 const mapDispatchToProps = {
     getRepairsFromZakupkiThunkCreator,
