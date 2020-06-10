@@ -1,9 +1,10 @@
 import axios, {AxiosResponse} from 'axios';
-import {ProcedureType, RepairType} from "../types/datatypes";
+import {PageType, ProcedureType, RepairType} from "../types/datatypes";
 
 const SERVER = "http://8.209.73.85:8080/12";
 const GET_REPAIR_PROCEDURE_FROM_ZAKUPKI_ENDPOINT = "/goszakupki/repair/";
 const SAVE_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/goszakupki/repair/";
+const GET_ALL_SAVED_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/base/repair/get_all";
 
 
 export const ZakupkiRepairAPI = {
@@ -34,5 +35,26 @@ export const ZakupkiRepairAPI = {
     },
 
 };
+
+export const SavedRepairApi = {
+    getAll(page: PageType) {
+        let address = SERVER + GET_ALL_SAVED_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT;
+        // let sessionId = localStorage.getItem('sessionId');
+
+        return axios({
+            method: 'POST',
+            url: address,
+            data: page
+        }).then(function (response) {
+            console.log(response);
+            return response
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+    },
+
+
+}
 
 

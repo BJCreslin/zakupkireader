@@ -17,8 +17,10 @@ class Header extends React.Component {
 
                             <Nav.Link href="#link">Link</Nav.Link>
                             <NavDropdown title="Repaire" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/repair" activeClassName="active" eventKey="/">Repaire</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                <NavDropdown.Item href="/repair" activeClassName="active"
+                                                  eventKey="/">Repaire</NavDropdown.Item>
+                                <NavDropdown.Item href="/newrepair" eventKey="/">Saved repair
+                                    procedures</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider/>
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
