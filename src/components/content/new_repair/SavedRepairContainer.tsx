@@ -1,31 +1,46 @@
 import React from 'react';
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {RepairsType} from "../../../types/datatypes";
+import {PageType, SaveRepairType, SaveRepairTypes} from "../../../types/datatypes";
 import {AppStateType} from "../../../redux/redux-store";
 import SavedRepairs from "./SavedRepairs";
+import {getSavedRepairsFromZakupkiThunkCreator} from "../../../redux/savedrepair-reducer";
 
 
-class SavedRepairContainer extends React.Component {
+class SavedRepairContainer extends React.Component<any> {
+    componentDidMount() {
+        this.props.getSavedRepairsFromZakupkiThunkCreator(this.props.page);
+    }
+
     render() {
         return (
             <>
-                <SavedRepairs/>
+                {this.props.saveRepairs.map((saveRep: SaveRepairType) => {
+                    return (
+                        <SavedRepairs
+                            saveRepair={saveRep}/>
+                    )
+                })}
+
             </>
         )
     }
 }
 
 type MapStateToPropsType = {
-    repairs: RepairsType
+    saveRepairs: SaveRepairTypes,
+    page: PageType
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        repairs: state.repairContent.repairs
+        saveRepairs: state.savedRepairContent.saveRepairs,
+        page: state.savedRepairContent.page
     }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+    getSavedRepairsFromZakupkiThunkCreator
+}
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(SavedRepairContainer);

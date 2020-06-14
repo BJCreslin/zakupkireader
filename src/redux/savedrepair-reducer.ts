@@ -127,6 +127,7 @@ export const setToggleFetching = (isFetching: boolean): SetToggleFetchingType =>
 
 type GetStateType = () => AppStateType;
 type DispatchType = Dispatch<ActionsTypes>;
+
 export const getSavedRepairsFromZakupkiThunkCreator = (page: PageType): ThunkAction<Promise<void>, AppStateType, any, ActionsTypes> => {
     return async (dispatch, getState) => {
         dispatch(setToggleFetching(true));

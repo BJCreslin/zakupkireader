@@ -17,7 +17,7 @@ class RepairsContainer extends React.Component <PropsType> {
 
     componentDidMount() {
         this.props.getRepairsFromZakupkiThunkCreator()
-        this.props.getRepairsFromZakupkiThunkCreator();
+     //   this.props.getRepairsFromZakupkiThunkCreator();
     }
 
     render = () => {
