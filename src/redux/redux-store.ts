@@ -1,10 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from "redux-thunk";
 import repairReducer from "./repair-reducer";
+import savedRepairReducer from "./savedrepair-reducer";
 
 
 let rootReducer = combineReducers({
-    repairContent: repairReducer
+    repairContent: repairReducer,
+    savedRepairContent:savedRepairReducer
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
