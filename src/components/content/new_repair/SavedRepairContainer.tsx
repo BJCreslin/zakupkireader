@@ -14,15 +14,15 @@ class SavedRepairContainer extends React.Component<any> {
 
     render() {
         return (
-            <>
-                {this.props.saveRepairs.map((saveRep: SaveRepairType) => {
+
+                this.props.saveRepairs.map((saveRep: SaveRepairType) => {
                     return (
                         <SavedRepairs
                             saveRepair={saveRep}/>
                     )
-                })}
+                })
 
-            </>
+
         )
     }
 }

@@ -1,7 +1,9 @@
 import axios, {AxiosResponse} from 'axios';
 import {PageType, ProcedureType, RepairType} from "../types/datatypes";
 
-const SERVER = "http://8.209.73.85:8080/12";
+const ali="http://8.209.73.85:8080/12";
+const localhost ="http://localhost:8080";
+const SERVER =localhost;
 const GET_REPAIR_PROCEDURE_FROM_ZAKUPKI_ENDPOINT = "/goszakupki/repair/";
 const SAVE_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/base/repair/";
 const GET_ALL_SAVED_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/base/repair/get_all";

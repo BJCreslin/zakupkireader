@@ -22,8 +22,11 @@ class RepairsContainer extends React.Component <PropsType> {
 
     render = () => {
         return (
+
             this.props.repairs.map((repair: RepairType) => {
+                debugger;
                     return (
+
                         <Repair repair={repair}
                             saveRepairsToZakupkiThunkCreator={this.props.saveRepairsToZakupkiThunkCreator}/>
                     )
