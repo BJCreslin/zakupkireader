@@ -17,14 +17,12 @@ class RepairsContainer extends React.Component <PropsType> {
 
     componentDidMount() {
         this.props.getRepairsFromZakupkiThunkCreator()
-     //   this.props.getRepairsFromZakupkiThunkCreator();
     }
 
     render = () => {
         return (
 
             this.props.repairs.map((repair: RepairType) => {
-                debugger;
                     return (
 
                         <Repair repair={repair}

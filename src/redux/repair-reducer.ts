@@ -31,7 +31,7 @@ let repairReducer = (state = initialState, action: ActionsTypes): InitialStateTy
             }
         }
         case SET_FETCHING: {
-            if (action.isFetching != undefined) {
+            if (action.isFetching !== undefined) {
                 return {
                     ...state,
                     isFetching: action.isFetching
@@ -43,12 +43,12 @@ let repairReducer = (state = initialState, action: ActionsTypes): InitialStateTy
         }
         case DELETE_REPAIR_BY_UIN: {
             let newRepairs: Array<RepairType> | null = null;
-            if (action.procedure != undefined) {
+            if (action.procedure !== undefined) {
 
                 if (state.repairs) {
                     newRepairs = state.repairs.filter((repair) => {
                         // @ts-ignore
-                        return repair.uin != action.procedure.uin;
+                        return repair.uin !== action.procedure.uin;
                     });
                 }
 

@@ -8,11 +8,15 @@ import {getSavedRepairsFromZakupkiThunkCreator} from "../../../redux/savedrepair
 
 
 class SavedRepairContainer extends React.Component<any> {
+    props:any;
+
     componentDidMount() {
+        alert("gffgh");
         this.props.getSavedRepairsFromZakupkiThunkCreator(this.props.page);
     }
 
     render() {
+
         return (
 
                 this.props.saveRepairs.map((saveRep: SaveRepairType) => {

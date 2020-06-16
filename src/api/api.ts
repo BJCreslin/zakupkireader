@@ -49,14 +49,10 @@ export const SavedRepairApi = {
             data: page
         }).then(function (response) {
             console.log(response);
-            return response
+            return response.data
         })
             .catch(function (error) {
                 console.log(error);
             })
     },
-
-
 }
-
-
