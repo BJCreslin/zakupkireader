@@ -23,7 +23,7 @@ class Header extends React.Component {
                                     procedures</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider/>
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                <NavDropdown.Item href="/email" activeClassName="active">Email</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Form inline>

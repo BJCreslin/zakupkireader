@@ -1,12 +1,13 @@
 import axios, {AxiosResponse} from 'axios';
 import {PageType, ProcedureType, RepairType} from "../types/datatypes";
 
-const ali="http://8.209.73.85:8080/12";
-const localhost ="http://localhost:8080";
-const SERVER =ali;
+const ali = "http://8.209.73.85:8080/12";
+const localhost = "http://localhost:8080";
+const SERVER = localhost;
 const GET_REPAIR_PROCEDURE_FROM_ZAKUPKI_ENDPOINT = "/goszakupki/repair/";
 const SAVE_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/base/repair/";
-const GET_ALL_SAVED_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/base/repair/get_all";
+const GET_ALL_SAVED_REPAIR_PROCEDURE_TO_ZAKUPKI_ENDPOINT = "/base/repair/get_all/";
+const EMAIL_SENDER_ENDPOINT = "/email/";
 
 
 export const ZakupkiRepairAPI = {
@@ -55,4 +56,13 @@ export const SavedRepairApi = {
                 console.log(error);
             })
     },
+}
+export const EmailSender = {
+    sendTest() {
+        let address = SERVER + EMAIL_SENDER_ENDPOINT;
+        // let sessionId = localStorage.getItem('sessionId');
+        return axios.get(address,
+            // {headers: {sessionId: sessionId}}
+        );
+    }
 }
